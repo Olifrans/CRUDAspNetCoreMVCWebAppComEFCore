@@ -18,11 +18,14 @@ namespace CRUDAspNetCoreMVCWebAppComEFCore.Controllers
             _context = context;
         }
 
+
+
         // GET: Empregado
         public async Task<IActionResult> Index()
         {
             return View(await _context.Empregados.ToListAsync());
         }
+
 
         // GET: Empregado/Details/5
         public async Task<IActionResult> Details(int? id)
