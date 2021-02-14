@@ -4,50 +4,71 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Registros de Novos Empregados</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Funcao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LocalizacaoEscritorio)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Funcao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocalizacaoEscritorio)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmpregadosId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmpregadosId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmpregadosId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"> </i>   
+        <a class="btn btn-info pull-right fa fa-plus" asp-action="AddOrEdit">Cadastro de Novos Empregados</a>
+    </div>
+
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Codigo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Funcao)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.LocalizacaoEscritorio)
+                            </th>
+
+                            @*Adição Francisco*@
+                            <th>
+                                @*<a class="btn btn-info pull-right fa fa-plus" asp-action="AddOrEdit">Cadastro de Novos Empregados</a>*@
+                                <a asp-action="AddOrEdit" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Editar ou  Deletar</a>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Codigo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Funcao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LocalizacaoEscritorio)
+                                </td>
+                                <td>
+                                    <a asp-action="AddOrEdit" asp-route-id="@item.EmpregadosId"><i class="fa fa-marker fa-lg ">@*Editar*@</i></a> |
+                                    @*<a asp-action="Details" asp-route-id="@item.EmpregadosId">Detalhes</a> |*@
+                                    <a asp-action="Delete" asp-route-id="@item.EmpregadosId" class="text-danger ml-1" onclick="return confirm('Você tem certeza que deseja deletar a conta!')" ><i class="fa fa-trash-alt fa-lg ">@*Deletar*@</i> </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

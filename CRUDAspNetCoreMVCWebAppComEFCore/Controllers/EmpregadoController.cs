@@ -27,6 +27,8 @@ namespace CRUDAspNetCoreMVCWebAppComEFCore.Controllers
         }
 
 
+        /*
+
         // GET: Empregado/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,10 +47,17 @@ namespace CRUDAspNetCoreMVCWebAppComEFCore.Controllers
             return View(empregados);
         }
 
+        */
+
+
+
         // GET: Empregado/Create
-        public IActionResult Create()
+        public IActionResult AddOrEdit(int id=0)
         {
-            return View();
+           if(id==0)
+            return View(new Empregados());
+           else
+                return View(_context.Empregados.Find(id));
         }
 
         // POST: Empregado/Create
@@ -56,16 +65,24 @@ namespace CRUDAspNetCoreMVCWebAppComEFCore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpregadosId,Nome,Codigo,Funcao,LocalizacaoEscritorio")] Empregados empregados)
+        public async Task<IActionResult> AddOrEdit([Bind("EmpregadosId,Nome,Codigo,Funcao,LocalizacaoEscritorio")] Empregados empregados)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(empregados);
+                if (empregados.EmpregadosId == 0)
+                    _context.Add(empregados);
+                else
+                _context.Update(empregados);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(empregados);
         }
+
+
+
+
+        /*
 
         // GET: Empregado/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -118,23 +135,37 @@ namespace CRUDAspNetCoreMVCWebAppComEFCore.Controllers
             return View(empregados);
         }
 
+
+        */
+
+
+
         // GET: Empregado/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var empregados = await _context.Empregados.FindAsync(id);
+            _context.Empregados.Remove(empregados);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
 
-            var empregados = await _context.Empregados
-                .FirstOrDefaultAsync(m => m.EmpregadosId == id);
-            if (empregados == null)
-            {
-                return NotFound();
-            }
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return View(empregados);
+            //var empregados = await _context.Empregados
+            //    .FirstOrDefaultAsync(m => m.EmpregadosId == id);
+            //if (empregados == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return View(empregados);
         }
+
+
+
+        /*
 
         // POST: Empregado/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -151,5 +182,8 @@ namespace CRUDAspNetCoreMVCWebAppComEFCore.Controllers
         {
             return _context.Empregados.Any(e => e.EmpregadosId == id);
         }
+
+        */
+
     }
 }
