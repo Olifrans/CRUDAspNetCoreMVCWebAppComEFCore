@@ -59,13 +59,12 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input type="submit" value="Salvar" class="btn btn-primary  btn-block" />
+                        <input type="submit" value="Salvar" class="btn btn-primary  btn-block" onclick="return confirm('Casdastro feito e atualizado com sucesso!')" />
                     </div>
 
 
                     <div class="form-group col-md-6">
-                        <a class="btn btn-info pull-right fa fa-plus btn btn-secondary  btn-block" asp-action="AddOrEdit
-                           @*Index*@" ><i class="fa fa-table " ></i> Voltar</a>
+                        <a class="btn btn-info pull-right fa fa-plus btn btn-secondary  btn-block" asp-action="Index" ><i class="fa fa-table " ></i> Voltar</a>
                     </div>
 
                 </div>

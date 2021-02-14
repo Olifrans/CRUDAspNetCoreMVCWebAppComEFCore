@@ -60,9 +60,9 @@
                                     @Html.DisplayFor(modelItem => item.LocalizacaoEscritorio)
                                 </td>
                                 <td>
-                                    <a asp-action="AddOrEdit" asp-route-id="@item.EmpregadosId"><i class="fa fa-marker fa-lg ">@*Editar*@</i></a> |
+                                    <a asp-action="AddOrEdit" asp-route-id="@item.EmpregadosId" ><i class="fa fa-marker fa-lg ">@*Editar*@</i></a> |
                                     @*<a asp-action="Details" asp-route-id="@item.EmpregadosId">Detalhes</a> |*@
-                                    <a asp-action="Delete" asp-route-id="@item.EmpregadosId" class="text-danger ml-1" onclick="return confirm('Você tem certeza que deseja deletar a conta!')" ><i class="fa fa-trash-alt fa-lg ">@*Deletar*@</i> </a>
+                                    <a asp-action="Delete" asp-route-id="@item.EmpregadosId" class="text-danger ml-1" onclick="return confirm('Tem certeza que deseja excluir o cadastro do empregado?')" ><i class="fa fa-trash-alt fa-lg ">@*Deletar*@</i> </a>
                                 </td>
                             </tr>
                         }
